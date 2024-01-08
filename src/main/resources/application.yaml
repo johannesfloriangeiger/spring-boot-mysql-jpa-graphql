@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+    username: "user"
+    password: "password"
+    url: "jdbc:mysql://mysql:3306/test"
+  graphql:
+    graphiql:
+      enabled: true

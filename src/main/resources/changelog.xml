@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="1" author="Liquibase">
+        <createTable tableName="companies">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar (255)"/>
+        </createTable>
+
+        <insert tableName="companies">
+            <column name="id">1</column>
+            <column name="name">ACME</column>
+        </insert>
+
+        <createTable tableName="employees">
+            <column name="id" type="int">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar (255)"/>
+            <column name="company_id" type="int">
+                <constraints nullable="false" foreignKeyName="fk_employee_company_id" references="companies(id)"/>
+            </column>
+        </createTable>
+
+        <insert tableName="employees">
+            <column name="id">1</column>
+            <column name="name">Alice</column>
+            <column name="company_id">1</column>
+        </insert>
+
+        <insert tableName="employees">
+            <column name="id">2</column>
+            <column name="name">Bob</column>
+            <column name="company_id">1</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
